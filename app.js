@@ -35,17 +35,76 @@ function createManager(){
       }
     },
 
-    // STUDENT: Add other questions here!
+    {
+      type: "input",
+      name: "managerId",
+      message: "Enter ID of manager: "
+    },
+    {
+        type: "input",
+        name: "managerEmail",
+        message: "Enter email of manager: "
+    },
+    {
+        type: "input",
+        name: "managerOffice",
+        message: "Enter office number of manager: "
+    },
 
+//Engineers info:
+function createEngineer(){
+    console.log("Please build your team");
+    inquirer.prompt([
+  
+    {
+        type: "input",
+        name: "engineerName1",
+        message: "Enter name of engineer number 1: "
+    },
+    {
+        type: "input",
+        name: "engineerId1",
+        message: "Enter ID of engineer number 1: "
+    },
+    {
+        type: "input",
+        name: "engineerEmail1",
+        message: "Enter email of engineer number 1: "
+    },
+    {
+        type: "input",
+        name: "engineerGithub1",
+        message: "Enter GitHub Username of engineer number 1: "
+    },
+
+//Intern info:
+function createEngineer(){
+    console.log("Please build your team");
+    inquirer.prompt([
+    {
+        type: "input",
+        name: "interName",
+        message: "Enter name of Intern: "
+    },
+    {
+        type: "input",
+        name: "idIntern",
+        message: "Enter ID of Intern: "
+    },
+    {
+        type: "input",
+        name: "emailIntern",
+        message: "Enter email of Intern:"
+    }
 
     ]).then(answers => {
-      // STUDENT: Process the response by instatiating a new object in the Manager class
+// STUDENT: Process the response by instatiating a new object in the Manager class
 
 
-      // Now call the next question set
-      createTeam();
-    });
-}
+// Now call the next question set
+    createTeam();
+  });
+  }
 
 // This function starts team creation.
 function createTeam() {

@@ -25,7 +25,7 @@ function createManager(){
     {
       type: "input",
       name: "managerName",
-      message: "What is your manager's name?",
+      message: "What is your manager's name: ",
       // Note how the validate function works
       validate: answer => {
         if (answer !== "") {
@@ -38,68 +38,36 @@ function createManager(){
     {
       type: "input",
       name: "managerId",
-      message: "Enter ID of manager: "
+      message: "Enter manager's employee ID: "
     },
     {
         type: "input",
         name: "managerEmail",
-        message: "Enter email of manager: "
+        message: "Enter mamanger's e-mail: "
     },
     {
         type: "input",
         name: "managerOffice",
-        message: "Enter office number of manager: "
+        message: "Enter manager's office number: "
     },
-
-//Engineers info:
-function createEngineer(){
-    console.log("Please build your team");
-    inquirer.prompt([
   
-    {
-        type: "input",
-        name: "engineerName1",
-        message: "Enter name of engineer number 1: "
-    },
-    {
-        type: "input",
-        name: "engineerId1",
-        message: "Enter ID of engineer number 1: "
-    },
-    {
-        type: "input",
-        name: "engineerEmail1",
-        message: "Enter email of engineer number 1: "
-    },
-    {
-        type: "input",
-        name: "engineerGithub1",
-        message: "Enter GitHub Username of engineer number 1: "
-    },
-
-//Intern info:
-function createEngineer(){
-    console.log("Please build your team");
-    inquirer.prompt([
-    {
-        type: "input",
-        name: "interName",
-        message: "Enter name of Intern: "
-    },
-    {
-        type: "input",
-        name: "idIntern",
-        message: "Enter ID of Intern: "
-    },
-    {
-        type: "input",
-        name: "emailIntern",
-        message: "Enter email of Intern:"
-    }
-
     ]).then(answers => {
 // STUDENT: Process the response by instatiating a new object in the Manager class
+        let managerName = answers.managerName;
+        let managerId = answers.managerId;
+        let managerEmail = answers.managerEmail;
+        let managerOffice = answers.managerOffice;
+        let manager = new Manager(
+          managerName,
+          managerId,
+          managerEmail,
+          managerOffice
+        );
 
+        teamMembers.push(manager);
+        idArray++;
+
+        console.log("The next part will collect information about all the members that will be part of the team:")
 
 // Now call the next question set
     createTeam();
@@ -110,6 +78,12 @@ function createEngineer(){
 function createTeam() {
   inquirer.prompt([
     // STUDENT: Ask which type of team member should be created with a list of choices
+    {
+      type: "list",
+      name: "memberChoice",
+      message: "What type of team member should be created next? ",
+      choices: ["Engineer", "Intern", "None"]
+    }
 
   ]).then(userChoice => {
     // STUDENT: Based on which choice they make, call the correct function to ask more questions.
@@ -122,22 +96,91 @@ function createTeam() {
 // This function starts team creation.
 function createEngineer() {
   inquirer.prompt([
-    // STUDENT:  Engineer questions
-
-  ]).then(userChoice => {
-    // STUDENT: Make sure the id supplied is unique, then take the data supplied and 
-    // instantiate the Engineer constructor.
+    // STUDENT:  Engineer questions:
+    function createEngineer(){
+      console.log("Please build your team");
+      inquirer.prompt([
     
-    
-    // STUDENT: When finished:
-       // Add the new object to the team member array
-       // Pass control back to the createTeam() function
+      {
+          type: "input",
+          name: "engineerName",
+          message: "What is the engineer's name: "
+      },
+      {
+          type: "input",
+          name: "engineerId",
+          message: "Enter engineer's employee ID: "
+      },
+      {
+          type: "input",
+          name: "engineerEmail",
+          message: "Enter engineer's e-mail: "
+      },
+      {
+          type: "input",
+          name: "engineerGithub",
+          message: "Enter engineer's GitHub username: "
+      },
 
+      ]).then(userChoice => {
+        // STUDENT: Make sure the id supplied is unique, then take the data supplied and 
+        // instantiate the Engineer constructor.
+          // STUDENT: Process the response by instatiating a new object in the Manager class
+          let engineerName = answers.engineerName;
+          let engineerId = answers.engineerId;
+          let engineerEmail = answers.engineerEmail;
+          let engineerGithub = answers.engineerGithub;
+          let engineer = new Engineer(
+            engineerName,
+            engineerId,
+            engineerEmail,
+            engineerGithub
+          );
+        // STUDENT: When finished:
+          // Add the new object to the team member array
+          // Pass control back to the createTeam() function
+
+          teamMembers.push(engineer);
+          idArray++;
+    
+          console.log("The next part will collect information about the members that will be part of the team:")
+ 
+ // Now call the next question set
+   createTeam();
   });
-}
+},
 
 // STUDENT: Now create a function for creating an Intern using the code above as an example
 
+function createIntern(){
+  console.log("Please build your team");
+  inquirer.prompt([
+  {
+      type: "input",
+      name: "internName",
+      message: "What is the intern's name: "
+  },
+  {
+      type: "input",
+      name: "internId",
+      message: "Enter intern's employee ID: "
+  },
+  {
+      type: "input",
+      name: "internEmail",
+      message: "Enter intern's e-mail address: "
+  },
+  {
+    type: "input",
+    name: "internSchool",
+    message: "Enter intern's school: "
+  },
+
+  ]).then(userChoice => { 
+  
+  });
+
+  )}
 
 // STUDENT: This function will call the render function required near the top (line 12), 
 // and pass INTO it the teamMembers area; from there, write the HTML returned back to a file 
@@ -155,7 +198,6 @@ function startMenu() {
   createManager()
 
 }
-
 
 // HINT: make sure to build out your classes first! Remember that your Manager, Engineer,
 // and Intern classes should all extend from a class named Employee; see the directions

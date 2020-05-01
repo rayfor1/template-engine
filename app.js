@@ -38,17 +38,37 @@ function createManager(){
     {
       type: "input",
       name: "managerId",
-      message: "Enter manager's employee ID: "
+      message: "Enter manager's employee ID: ",
+      validate: answer => {
+        if (answer !== "") {
+          return true;
+        }
+        return "Please enter at least one character.";
+      }
     },
+    
     {
-        type: "input",
-        name: "managerEmail",
-        message: "Enter mamanger's e-mail: "
+      type: "input",
+      name: "managerEmail",
+      message: "Enter mamanger's e-mail: ",
+      validate: answer => {
+        if (answer !== "") {
+          return true;
+        }
+        return "Please enter at least one character.";
+      }
     },
+    
     {
         type: "input",
         name: "managerOffice",
-        message: "Enter manager's office number: "
+        message: "Enter manager's office number: ",
+        validate: answer => {
+          if (answer !== "") {
+            return true;
+          }
+          return "Please enter at least one character.";
+        }
     },
   
     ]).then(answers => {
@@ -104,22 +124,46 @@ function createEngineer() {
       {
           type: "input",
           name: "engineerName",
-          message: "What is the engineer's name: "
+          message: "What is the engineer's name: ",
+          validate: answer => {
+            if (answer !== "") {
+              return true;
+            }
+            return "Please enter at least one character.";
+          }
       },
       {
           type: "input",
           name: "engineerId",
-          message: "Enter engineer's employee ID: "
+          message: "Enter engineer's employee ID: ",
+          validate: answer => {
+            if (answer !== "") {
+              return true;
+            }
+            return "Please enter at least one character.";
+          }
       },
       {
           type: "input",
           name: "engineerEmail",
-          message: "Enter engineer's e-mail: "
+          message: "Enter engineer's e-mail: ",
+          validate: answer => {
+            if (answer !== "") {
+              return true;
+            }
+            return "Please enter at least one character.";
+          }
       },
       {
           type: "input",
           name: "engineerGithub",
-          message: "Enter engineer's GitHub username: "
+          message: "Enter engineer's GitHub username: ",
+          validate: answer => {
+            if (answer !== "") {
+              return true;
+            }
+            return "Please enter at least one character.";
+          }
       },
 
       ]).then(userChoice => {
@@ -143,8 +187,7 @@ function createEngineer() {
           teamMembers.push(engineer);
           idArray++;
     
-          console.log("The next part will collect information about the members that will be part of the team:")
- 
+          console.log("The next part will collect information about additional members to be added into the team");
  // Now call the next question set
    createTeam();
   });
@@ -156,35 +199,78 @@ function createIntern(){
   console.log("Please build your team");
   inquirer.prompt([
   {
-      type: "input",
-      name: "internName",
-      message: "What is the intern's name: "
+    type: "input",
+    name: "internName",
+    message: "What is the intern's name: ",
+    validate: answer => {
+      if (answer !== "") {
+        return true;
+      }
+      return "Please enter at least one character.";
+    }
   },
   {
-      type: "input",
-      name: "internId",
-      message: "Enter intern's employee ID: "
+    type: "input",
+    name: "internId",
+    message: "Enter intern's employee ID: ",
+    validate: answer => {
+      if (answer !== "") {
+        return true;
+      }
+      return "Please enter at least one character.";
+    }
   },
   {
-      type: "input",
-      name: "internEmail",
-      message: "Enter intern's e-mail address: "
+    type: "input",
+    name: "internEmail",
+    message: "Enter intern's e-mail address: ",
+    validate: answer => {
+      if (answer !== "") {
+        return true;
+      }
+      return "Please enter at least one character.";
+    }
   },
   {
     type: "input",
     name: "internSchool",
-    message: "Enter intern's school: "
+    message: "Enter intern's school: ",
+    validate: answer => {
+      if (answer !== "") {
+        return true;
+      }
+      return "Please enter at least one character.";
+    }
   },
 
   ]).then(userChoice => { 
-  
+           // STUDENT: Make sure the id supplied is unique, then take the data supplied and 
+          // instantiate the intern constructor.
+        
+          let internName = answers.internName;
+          let internId = answers.internId;
+          let internEmail = answers.internEmail;
+          let internSchool = answers.internSchool;
+          let intern = new Intern(
+            internName,
+            internId,
+            internEmail,
+            internSchool
+          );
+        // STUDENT: When finished:
+          // Add the new object to the team member array
+          // Pass control back to the createTeam() function
+
+          teamMembers.push(intern);
+          idArray++;
+    
+          console.log("The next part will collect information about additional members to be added into the team");
   });
 
   )}
 
-// STUDENT: This function will call the render function required near the top (line 12), 
-// and pass INTO it the teamMembers area; from there, write the HTML returned back to a file 
-// in a directory called output.
+// STUDENT: This function will call the render function required near the top (line 12), and pass INTO it the teamMembers area; from there, write the HTML returned back to a file in a directory called output.
+
 function renderHtmlPage(){
 
 }

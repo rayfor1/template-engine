@@ -267,11 +267,21 @@ function createIntern(){
           console.log("The next part will collect information about additional members to be added into the team");
   });
 
-  )}
+  
 
 // STUDENT: This function will call the render function required near the top (line 12), and pass INTO it the teamMembers area; from there, write the HTML returned back to a file in a directory called output.
 
 function renderHtmlPage(){
+  
+  
+  fs.writeFile("./output/main.html", fullHTML, function(err) {
+    if (err) {
+       return console.log(err);
+    }
+ });
+}
+
+
 
 }
 

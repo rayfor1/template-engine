@@ -310,7 +310,10 @@ function createEngineer() {
 
             // Here we start things off by calling the createManager function
             createManager()
-
+            createTeam()
+            createEngineer()
+            createIntern()
+            renderHtmlPage()
           }
 
           // HINT: make sure to build out your classes first! Remember that your Manager, Engineer,

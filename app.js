@@ -101,13 +101,26 @@ function createTeam() {
       type: "list",
       name: "memberChoice",
       message: "What type of team member should be created next? ",
-      choices: ["Engineer", "Intern", "None"]
+      choices: ["Manager", "Engineer", "Intern", "None"]
     }
 
   ]).then(userChoice => {
     // STUDENT: Based on which choice they make, call the correct function to ask more questions.
     // If no choice is made, then go to the rendering function.
+
+
+    // if (userChoice.memberChoice === "Engineer") {
+    //   createEngineer();
+    // } else if (userChoice.memberChoice === "Intern") {
+    //   createIntern();
+    // } else {
+    //   renderHtmlPage();
+    // }
     switch (userChoice.memberChoice) {
+      case "Manager":
+        createManager();
+        break;
+
       case "Engineer":
         createEngineer();
         break;
@@ -116,19 +129,13 @@ function createTeam() {
         createIntern();
         break;
 
+      case "None":
+        renderHtmlPage();
+        break;
+
       default:
-        buildTeam();
+        renderHtmlPage();
     }
-
-    if (userChoice.memberChoice === "Engineer") {
-      createEngineer();
-    } else if (userChoice.memberChoice === "Intern") {
-      createIntern();
-    } else {
-      renderHtmlPage();
-    }
-
-
 
   });
 }
@@ -186,7 +193,7 @@ function createEngineer() {
               }
             },
 
-          ]).then(userChoice => {
+          ]).then(answers => {
             // STUDENT: Make sure the id supplied is unique, then take the data supplied and 
             // instantiate the Engineer constructor.
             // STUDENT: Process the response by instatiating a new object in the Manager class
@@ -262,7 +269,7 @@ function createEngineer() {
               }
             },
 
-          ]).then(userChoice => {
+          ]).then(answers => {
             // STUDENT: Make sure the id supplied is unique, then take the data supplied and 
             // instantiate the intern constructor.
 
@@ -314,7 +321,7 @@ function createEngineer() {
             createEngineer()
             createIntern()
             renderHtmlPage()
-          }
+          };
 
           // HINT: make sure to build out your classes first! Remember that your Manager, Engineer,
           // and Intern classes should all extend from a class named Employee; see the directions
@@ -322,5 +329,6 @@ function createEngineer() {
           // object with the correct structure and methods. This structure will be crucial in order
           // for the provided `render` function to work! ```
 
-
-          startMenu();
+  
+        }])}
+        startMenu();
